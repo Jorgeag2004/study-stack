@@ -1,6 +1,6 @@
 export default function Home() {
   return (
-  <div className="h-[100%] w-[100%] bg-neutral-700">
+  <div className="h-[100%] w-[100%] bg-neutral-900">
     <h1>Main Page</h1>
   </div>
   );
