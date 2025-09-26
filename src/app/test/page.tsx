@@ -1,10 +1,10 @@
-import {AssignmentCard} from "@/app/components/AssignmentCard";
+import { LearnCard } from "@/app/components/LearnCard/LearnCard";
 
 export default function page(){
 
     return(
         <div className="h-[100%] w-[100%] flex justify-center items-center bg-white">
-            <AssignmentCard name={"HW 2"} course={"Calc II"} dueDate={"Nov 2"} color={"yellow-600"}/>
+            <LearnCard name={"Newtons 2nd law"} course={"Physics 2"} dateCovered={"Nov 8"}/>
         </div>
     )
 }
