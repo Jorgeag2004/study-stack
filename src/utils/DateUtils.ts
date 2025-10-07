@@ -18,3 +18,14 @@ export function getDaysDiff(date: string):  number {
     console.log(diff_days);
     return diff_days;
 }
+
+// function takes in string date (YYYY-MM-DD)
+// returns date as string in natural language
+export function getDateText(date: string): string {
+    const [year, month, day] = date.split("-").map(Number);
+    const date_object = new Date(year, month - 1, day);
+    return date_object.toLocaleDateString('en-US', {
+        month: "short",
+        day: "numeric",
+    });
+}
