@@ -1,19 +1,27 @@
 import { StudyCard }  from './StudyCard'
 import {getDaysDiff} from "@/utils/DateUtils";
+import { StudyCardCompressed } from "@/components/StudyCard/StudyCardCompressed";
 
 interface StudyCardContainerProps {
     id: string,
     name: string,
-    couseName: string,
+    courseName: string,
     starRating: number,
     lastReview: string,
-    courseId: string
+    courseID: string,
+    compressed?: boolean,
 }
 
-export const StudyCardContainer = (props: StudyCardContainerProps) => {
-    const daysSinceReview: number = getDaysDiff(props.lastReview)
+export const StudyCardContainer = ({id, name, courseName, starRating, lastReview, courseID, compressed=false} : StudyCardContainerProps) => {
+    const daysSinceReview: number = getDaysDiff(lastReview)
+
+    if (compressed) {
+        return (
+            <StudyCardCompressed name={name} daysSinceReview={daysSinceReview} numStars={starRating} />
+        )
+    }
 
     return (
-        <StudyCard name={props.name} course={props.couseName} daysSinceReview={daysSinceReview} numStars={props.starRating} />
+        <StudyCard name={name} course={courseName} daysSinceReview={daysSinceReview} numStars={starRating} />
     )
 }
