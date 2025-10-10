@@ -1,10 +1,10 @@
-import {AssignmentCardContainer} from "@/components/AssignmentCard/AssignmentCardContainer";
+import {LearnCardContainer} from "@/components/LearnCard/LearnCardContainer";
 
 export default function page(){
 
     return(
         <div className="h-[100%] w-[100%] flex justify-center items-center bg-white">
-            <AssignmentCardContainer name={"HW 3"} dueDate={"2025-11-11"} courseName={"Calc 3"} courseID={"1816b575-b273-419c-b37f-24c2b05b7020"} id={"1816b575-b273-419c-b37f-24c2b05b7020"}/>
+            <LearnCardContainer name={"Solving Non-Homogenous EQs"} id={"f4adcfb4-2582-41a9-9a3d-e8bc8ef9009d"} courseId={"f4adcfb4-2582-41a9-9a3d-e8bc8ef9009d"} dateCovered={"2025-10-2"} couseName={"Diff EQ"} />
         </div>
     )
 }
