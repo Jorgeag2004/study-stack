@@ -3,6 +3,6 @@ export type StudyItem = {
     name:string;
     course_name: string;
     star_rating: number;
-    last_reviewed: string;
+    last_review: string;
     course_id: string;
 }
