@@ -1,17 +1,20 @@
-import {LearnCardContainer} from "@/components/LearnCard/LearnCardContainer";
-import {StudyCardContainer} from "@/components/StudyCard/StudyCardContainer";
-import {AssignmentCardContainer} from "@/components/AssignmentCard/AssignmentCardContainer";
 import { AssignmentStack } from "@/components/stacks/AssignmentStack";
 import { Assignment } from '@/types/assignment'
 import { fetch_all_assignments } from "@/lib/data/fetch_all_assignments";
+import { StudyItem } from "@/types/study_item";
+import { StudyItemStack } from "@/components/stacks/StudyItemStack";
+import {fetch_all_study_items } from "@/lib/data/fetch_all_study_items";
 
 export default async function page(){
 
     const assignments: Assignment[] = await fetch_all_assignments()
 
+    const study_items: StudyItem[] = await fetch_all_study_items()
+
     return(
-        <div className={"flex items-center justify-center h-screen bg-neutral-800"}>
+        <div className={"flex items-center gap-8 justify-center h-screen bg-neutral-800"}>
             <AssignmentStack assignments={assignments} compressed={false} />
+            <StudyItemStack study_items={study_items} compressed={false} />
         </div>
     )
 }
