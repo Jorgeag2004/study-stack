@@ -1,5 +1,5 @@
 import {AssignmentCard} from "@/components/AssignmentCard/AssignmentCard";
-import {getDaysDiff, getDateText} from "@/utils/DateUtils";
+import {get_days_diff, get_days_text} from "@/utils/DateUtils";
 import {AssignmentCardCompressed} from "@/components/AssignmentCard/AssignmentCardCompressed";
 
 interface AssignmentCardContainerProps {
@@ -13,9 +13,9 @@ interface AssignmentCardContainerProps {
 
 export const AssignmentCardContainer = ({id, name, dueDate, compressed=false, courseName, courseID}: AssignmentCardContainerProps) => {
     // find days until due date
-    const days_left: number = getDaysDiff(dueDate);
+    const days_left: number = get_days_diff(dueDate);
     // get date in text format
-    const days_text: string = getDateText(dueDate);
+    const days_text: string = get_days_text(dueDate);
 
     let color: string;
     if (days_left <= 1) {

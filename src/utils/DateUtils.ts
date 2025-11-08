@@ -1,6 +1,6 @@
 // function takes in string date (YYYY-MM-DD)
 // returns diff between input date and today's date
-export function getDaysDiff(date: string):  number {
+export function get_days_diff(date: string):  number {
     const [year, month, day] = date.split("-").map(Number);
     const targetUtc = Date.UTC(year, month - 1, day); // UTC midnight of input
 
@@ -18,7 +18,7 @@ export function getDaysDiff(date: string):  number {
 
 // function takes in string date (YYYY-MM-DD)
 // returns date as string in natural language
-export function getDateText(date: string): string {
+export function get_days_text(date: string): string {
     const [year, month, day] = date.split("-").map(Number);
     const date_object = new Date(year, month - 1, day);
     return date_object.toLocaleDateString('en-US', {

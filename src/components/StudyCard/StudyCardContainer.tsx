@@ -1,5 +1,5 @@
 import { StudyCard }  from './StudyCard'
-import {getDaysDiff} from "@/utils/DateUtils";
+import {get_days_diff} from "@/utils/DateUtils";
 import { StudyCardCompressed } from "@/components/StudyCard/StudyCardCompressed";
 
 interface StudyCardContainerProps {
@@ -13,7 +13,7 @@ interface StudyCardContainerProps {
 }
 
 export const StudyCardContainer = ({id, name, courseName, starRating, lastReview, courseID, compressed=false} : StudyCardContainerProps) => {
-    const daysSinceReview: number = getDaysDiff(lastReview)
+    const daysSinceReview: number = get_days_diff(lastReview)
 
     if (compressed) {
         return (

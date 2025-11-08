@@ -1,4 +1,4 @@
-import {getDateText} from "@/utils/DateUtils";
+import {get_days_text} from "@/utils/DateUtils";
 import {LearnCard} from "@/components/LearnCard/LearnCard";
 import {LearnCardCompressed} from "@/components/LearnCard/LearnCardCompressed";
 
@@ -13,7 +13,7 @@ interface LearnCardContainerProps {
 
 export const LearnCardContainer = ({id, name, courseName, dateCovered, courseID, compressed=false}: LearnCardContainerProps) => {
 
-    const date_text: string = getDateText(dateCovered);
+    const date_text: string = get_days_text(dateCovered);
 
     if (compressed) {
         return (
