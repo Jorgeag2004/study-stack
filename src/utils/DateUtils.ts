@@ -1,22 +1,19 @@
 // function takes in string date (YYYY-MM-DD)
 // returns diff between input date and today's date
 export function getDaysDiff(date: string):  number {
-    const date_object: Date = new Date(date);
-    // handle invalid input
-    if (isNaN(date_object.getTime())) {
-        throw new Error(`Invalid date string: "${date}"`);
-    }
+    const [year, month, day] = date.split("-").map(Number);
+    const targetUtc = Date.UTC(year, month - 1, day); // UTC midnight of input
 
-    const today = new Date();
-    // strip time for full numbers
-    today.setHours(0, 0, 0, 0);
+    const now = new Date();
+    const todayUtc = Date.UTC(
+        now.getUTCFullYear(),
+        now.getUTCMonth(),
+        now.getUTCDate()
+    ); // UTC midnight today
 
-    // diff in milliseconds
-    const diff_ms: number = date_object.getTime() - today.getTime();
-    // convert to days
-    const diff_days: number = diff_ms / (1000 * 60 * 60 * 24)
-    console.log(diff_days);
-    return diff_days;
+    const diffMs = todayUtc - targetUtc;
+    const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+    return diffDays;
 }
 
 // function takes in string date (YYYY-MM-DD)
