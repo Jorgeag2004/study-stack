@@ -1,12 +1,17 @@
 import {LearnCardContainer} from "@/components/LearnCard/LearnCardContainer";
 import {StudyCardContainer} from "@/components/StudyCard/StudyCardContainer";
 import {AssignmentCardContainer} from "@/components/AssignmentCard/AssignmentCardContainer";
+import { AssignmentStack } from "@/components/stacks/AssignmentStack";
+import { Assignment } from '@/types/assignment'
+import { fetch_all_assignments } from "@/lib/data/fetch_all_assignments";
 
-export default function page(){
+export default async function page(){
+
+    const assignments: Assignment[] = await fetch_all_assignments()
 
     return(
-        <div className="h-[100%] w-[100%] flex justify-center items-center bg-white">
-            <StudyCardContainer name={"Conditional Prob"} compressed={true} courseName={"Probs and Sats"} courseID={"aa27363f-2ad8-462b-b6e1-e77270f35ad6"} id={"aa27363f-2ad8-462b-b6e1-e77270f35ad6"} starRating={1} lastReview={"2025-10-11"}/>
+        <div className={"flex items-center justify-center h-screen bg-neutral-800"}>
+            <AssignmentStack assignments={assignments} compressed={false} />
         </div>
     )
 }
