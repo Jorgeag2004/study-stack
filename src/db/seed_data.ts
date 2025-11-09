@@ -76,14 +76,14 @@ export const study_items_data = [
     {
         name: "Vector Spaces",
         course_name: "Calculus III",
-        star_rating: 4,
+        star_rating: 2,
         last_review: "2025-09-20",
         course_id: "a1111111-1111-4111-8111-111111111111",
     },
     {
         name: "Binary Search Trees",
         course_name: "CS2100",
-        star_rating: 5,
+        star_rating: 1,
         last_review: "2025-09-22",
         course_id: "b2222222-2222-4222-8222-222222222222",
     },
@@ -97,14 +97,14 @@ export const study_items_data = [
     {
         name: "Normal Distribution",
         course_name: "Statistics",
-        star_rating: 5,
+        star_rating: 1,
         last_review: "2025-09-24",
         course_id: "d4444444-4444-4444-8444-444444444444",
     },
     {
         name: "Eigenvectors Review",
         course_name: "Linear Algebra",
-        star_rating: 4,
+        star_rating: 2,
         last_review: "2025-09-26",
         course_id: "e5555555-5555-4555-8555-555555555555",
     },
