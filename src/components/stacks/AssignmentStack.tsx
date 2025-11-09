@@ -1,4 +1,4 @@
-import { assignment } from '@/types/assignment'
+import { Assignment } from '@/types/assignment'
 import { AssignmentCardContainer} from "@/components/AssignmentCard/AssignmentCardContainer";
 
 interface AssignmentStackProps {

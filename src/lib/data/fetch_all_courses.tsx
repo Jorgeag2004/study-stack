@@ -5,6 +5,6 @@ import { Course } from '@/types/course'
 
 const db = drizzle(process.env.DATABASE_URL!)
 
-export async function fetchAllCourses(): Promise<Course[]> {
+export async function fetch_all_courses(): Promise<Course[]> {
     return db.select().from(courses_table);
 }
