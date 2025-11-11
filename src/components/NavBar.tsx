@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import {Course} from '@/types/course'
 import {fetch_all_courses} from '@/lib/data/fetch_all_courses'
+import { CourseButton } from "@/components/CourseButton";
 
 export async function NavBar() {
 
@@ -11,10 +12,8 @@ export async function NavBar() {
             <Link href="/">
                 <p>home</p>
             </Link>
-            {courses.map((c: Course, index: number) => (
-                <Link key={index} href={{pathname: `/course/${c.name}`, query: {course_id: c.id}}}>
-                    {c.name}
-                </Link>
+            {courses.map((c: Course) => (
+               <CourseButton key={c.id} course_id={c.id} course_name={c.name} icon={c.icon} />
             ))}
         </div>
     )

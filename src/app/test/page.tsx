@@ -7,6 +7,8 @@ import {fetch_all_study_items } from "@/lib/data/fetch_all_study_items";
 import { fetch_all_learn_items } from "@/lib/data/fetch_all_learn_items";
 import { LearnItem } from '@/types/learn_item'
 import { LearnItemStack } from '@/components/stacks/LearnItemStack'
+import { Course } from '@/types/course';
+import { CourseButton } from "@/components/CourseButton";
 
 
 export default async function page(){
@@ -19,9 +21,7 @@ export default async function page(){
 
     return(
         <div className={"flex items-center gap-8 justify-center h-screen bg-neutral-800"}>
-            <AssignmentStack assignments={assignments} compressed={false} />
-            <StudyItemStack study_items={study_items} compressed={false} />
-            <LearnItemStack learn_items={learn_items} compressed={false} />
+            <CourseButton course_id={'67'} course_name={'button'} icon={'Star'} />
         </div>
     )
 }
