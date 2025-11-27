@@ -9,6 +9,7 @@ import { LearnItem } from '@/types/learn_item'
 import { LearnItemStack } from '@/components/stacks/LearnItemStack'
 import { Course } from '@/types/course';
 import { CourseButton } from "@/components/CourseButton";
+import { CourseForm } from '@/components/forms/course_form';
 
 
 export default async function page(){
@@ -21,7 +22,7 @@ export default async function page(){
 
     return(
         <div className={"flex items-center gap-8 justify-center h-screen bg-neutral-800"}>
-            <CourseButton course_id={'67'} course_name={'button'} icon={'Star'} />
+            <CourseForm/>
         </div>
     )
 }
