@@ -1,3 +1,8 @@
-import * as LucideIcons from 'lucide-react';
+import * as LucideIcons from "lucide-react";
+import { z } from "zod";
 
-export type IconType = keyof typeof LucideIcons;
+export const IconEnum = z.enum(
+    Object.keys(LucideIcons) as [string, ...string[]]
+);
+
+export type IconType = z.infer<typeof IconEnum>;

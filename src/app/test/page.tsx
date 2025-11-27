@@ -10,6 +10,7 @@ import { LearnItemStack } from '@/components/stacks/LearnItemStack'
 import { Course } from '@/types/course';
 import { CourseButton } from "@/components/CourseButton";
 import { CourseForm } from '@/components/forms/course_form';
+import { IconType } from "@/types/lucide_icon";
 
 
 export default async function page(){
@@ -20,9 +21,10 @@ export default async function page(){
 
     const learn_items: LearnItem[] = await fetch_all_learn_items()
 
+
     return(
         <div className={"flex items-center gap-8 justify-center h-screen bg-neutral-800"}>
-            <CourseForm/>
+            <CourseForm course_name={'Calc III'} icon={'Eye'}/>
         </div>
     )
 }
