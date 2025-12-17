@@ -4,10 +4,26 @@ import { drizzle } from 'drizzle-orm/node-postgres';
 import { eq } from 'drizzle-orm';
 import { study_items_table } from "@/db/schema";
 
-export async function edit_study_item_by_id(study_item: StudyItem): Promise<void> {
+interface edit_study_item_props {
+    id: string;
+    name?: string;
+    last_review?: string;
+    star_rating?: int;
+}
+
+export async function edit_study_item_by_id({id, name, last_review, star_rating}: edit_study_item_props): Promise<void> {
     const db = drizzle(process.env.DATABASE_URL!)
 
-    await db.update(study_items_table)
-        .set({name: study_item.name, last_review: study_item.last_review, star_rating: study_item.star_rating})
-        .where(eq(study_items_table.id, study_item.id))
+    if (name) {
+        await db.update(study_items_table)
+            .set({name: name}).where(eq(study_items_table.id, id))
+    }
+    if (last_review) {
+        await db.update(study_items_table)
+            .set({last_review: last_review}).where(eq(study_items_table.id, id))
+    }
+    if (star_rating) {
+        await db.update(study_items_table)
+            .set({star_rating: star_rating}).where(eq(study_items_table.id, id))
+    }
 }
