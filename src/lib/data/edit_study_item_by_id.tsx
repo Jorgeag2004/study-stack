@@ -8,7 +8,7 @@ interface edit_study_item_props {
     id: string;
     name?: string;
     last_review?: string;
-    star_rating?: int;
+    star_rating?: number;
 }
 
 export async function edit_study_item_by_id({id, name, last_review, star_rating}: edit_study_item_props): Promise<void> {
