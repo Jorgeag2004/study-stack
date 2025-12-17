@@ -1,14 +1,29 @@
-import { Assignment } from "@/types/assignment";
 import 'dotenv/config';
 import { drizzle } from 'drizzle-orm/node-postgres';
 import { eq } from 'drizzle-orm';
 import {assignments_table} from "@/db/schema";
 
-export async function edit_assignment_by_id(assignment: Assignment): Promise<void> {
+interface edit_assignment_props {
+    id: string;
+    name?: string;
+    course_name?: string;
+    due_date?: string;
+}
+
+export async function edit_assignment_by_id({id, name, course_name, due_date}: edit_assignment_props): Promise<void> {
 
     const db = drizzle(process.env.DATABASE_URL!);
 
-    await db.update(assignments_table)
-        .set({name: assignment.name, course_name: assignment.course_name, due_date: assignment.due_date})
-        .where(eq(assignments_table.id, assignment.id))
+    if (name) {
+        await db.update(assignments_table)
+            .set({name: name}).where(eq(assignments_table.id, id))
+    }
+    if (course_name) {
+        await db.update(assignments_table)
+            .set({course_name: course_name}).where(eq(assignments_table.id, id))
+    }
+    if (due_date) {
+        await db.update(assignments_table)
+            .set({due_date: due_date}).where(eq(assignments_table.id, id))
+    }
 }
