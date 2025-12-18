@@ -24,7 +24,7 @@ export default async function page(){
 
     return(
         <div className={"flex items-center gap-8 justify-center h-screen bg-neutral-800"}>
-            <CourseForm course_name={'Calc III'} icon={'Eye'}/>
+            <CourseForm id={'29277561-2eab-409a-af0f-f085088b548e'} course_name={'Physics II'} icon={'Circle'}/>
         </div>
     )
 }

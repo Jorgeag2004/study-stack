@@ -1,7 +1,10 @@
+'use server'
+
 import 'dotenv/config';
 import { drizzle } from 'drizzle-orm/node-postgres';
 import { eq } from 'drizzle-orm';
 import { courses_table, assignments_table, learn_items_table, study_items_table } from "@/db/schema";
+import {revalidatePath} from "next/cache";
 interface edit_course_props {
     id: string;
     name?: string;
@@ -26,4 +29,6 @@ export async function edit_course_by_id({id, name, icon}: edit_course_props): Pr
         await db.update(courses_table)
             .set({icon: icon}).where(eq(courses_table.id, id))
     }
+
+    revalidatePath('/')
 }

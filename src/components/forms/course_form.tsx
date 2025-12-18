@@ -3,10 +3,13 @@ import * as LucideIcons from 'lucide-react';
 import { useForm, SubmitHandler, useWatch } from 'react-hook-form';
 import {z} from 'zod';
 import {zodResolver} from "@hookform/resolvers/zod";
+import { add_course } from "@/lib/data/add_course";
+import { edit_course_by_id } from "@/lib/data/edit_course_by_id";
 
 interface CourseFormProps {
     course_name?: string;
     icon?: IconType;
+    id?: string;
 }
 
 const IconEnum = z.enum(Object.keys(LucideIcons) as [string, ...string[]]);
@@ -20,7 +23,7 @@ const schema = z.object({
 
 type FormFields = z.infer<typeof schema>;
 
-export function CourseForm({ course_name, icon }: CourseFormProps) {
+export function CourseForm({ course_name, icon, id }: CourseFormProps) {
 
     const { register, handleSubmit, formState: { errors }, control } = useForm<FormFields>(
         {
@@ -38,8 +41,14 @@ export function CourseForm({ course_name, icon }: CourseFormProps) {
         ? LucideIcons[watched_icon as keyof typeof LucideIcons]
         : null;
 
-    const onSubmit:  SubmitHandler<FormFields> = (data) => {
-       console.log(data);
+    const onSubmit:  SubmitHandler<FormFields> = async (data) => {
+        if (id && (!icon || !course_name)) {
+            throw new TypeError('Parameters icon and course_name must be provided when id is passed')
+        } else if (id) {
+            await edit_course_by_id({id: id, name: data.course_name, icon: data.icon})
+        } else {
+            await add_course(data.course_name, data.icon)
+        }
     }
 
     return (
