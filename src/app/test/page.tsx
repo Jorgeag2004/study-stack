@@ -16,16 +16,9 @@ import { AssignmentForm } from "@/components/forms/AssignmentForm";
 
 export default async function page(){
 
-    const assignments: Assignment[] = await fetch_all_assignments()
-
-    const study_items: StudyItem[] = await fetch_all_study_items()
-
-    const learn_items: LearnItem[] = await fetch_all_learn_items()
-
-
     return(
         <div className={"flex items-center gap-8 justify-center h-screen bg-neutral-800"}>
-           <AssignmentForm />
+           <AssignmentForm course_id={'03418f21-fdc6-4c9e-8879-2c64eb85f7d4'} />
         </div>
     )
 }

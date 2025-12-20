@@ -1,12 +1,17 @@
+'use server'
 import 'dotenv/config';
 import { drizzle } from 'drizzle-orm/node-postgres';
 import { assignments_table } from "@/db/schema";
+import { revalidatePath } from "next/cache";
+import { fetch_course_name_by_id } from "@/lib/data/fetch_course_name_by_id";
 
 const db = drizzle(process.env.DATABASE_URL!);
 
-export async function add_assignment(name: string, course_name:  string, due_date: string, course_id: string): Promise<string> {
-    const res = await db.insert(assignments_table).values({name: name, course_name: course_name, due_date: due_date, course_id: course_id}).returning({id: assignments_table.id})
-    return res[0].id
+export async function add_assignment(name: string, due_date: string, course_id: string): Promise<void> {
+
+    const course_name: string = await fetch_course_name_by_id(course_id);
+
+    await db.insert(assignments_table).values({name: name, course_name: course_name, due_date: due_date, course_id: course_id})
+    revalidatePath('/')
 }
 
-add_assignment('HW 8', "Physics II", '2025-12-10', 'c3333333-3333-4333-8333-333333333333')

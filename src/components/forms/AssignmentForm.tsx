@@ -3,10 +3,10 @@ import { useForm, SubmitHandler} from 'react-hook-form';
 import {z} from 'zod';
 import {zodResolver} from "@hookform/resolvers/zod";
 import { useState } from "react";
-import DatePicker from "react-datepicker";
 import { format } from 'date-fns';
-
 import { DayPicker } from 'react-day-picker';
+import { add_assignment } from "@/lib/data/add_assignment";
+import { edit_assignment_by_id } from "@/lib/data/edit_assignment_by_id";
 
 import 'react-day-picker/style.css'
 
@@ -15,6 +15,7 @@ interface AssignmentFormProps {
     id?: string;
     name?: string;
     due_date?: string;
+    course_id?: string;
 }
 
 const schema = z.object({
@@ -23,11 +24,11 @@ const schema = z.object({
 
 type FormFields = z.infer<typeof schema>;
 
-export function AssignmentForm({id, name, due_date}: AssignmentFormProps) {
+export function AssignmentForm({id, name, due_date, course_id}: AssignmentFormProps) {
 
     const [startDate, setStartDate] = useState(due_date ? new Date(due_date) : new Date());
 
-    const { register, handleSubmit, formState: { errors }, control } = useForm<FormFields>(
+    const { register, handleSubmit, formState: { errors }} = useForm<FormFields>(
         {
             defaultValues: {
                 name: name,
@@ -37,8 +38,14 @@ export function AssignmentForm({id, name, due_date}: AssignmentFormProps) {
     )
 
     const onSubmit: SubmitHandler<FormFields> = (data) => {
-        console.log(data.name)
-        console.log(format(startDate, 'yyyy-MM-dd'))
+        const name = data.name;
+        const date_formatted: string = format(startDate, 'yyyy-MM-dd');
+
+        if (id) {
+            edit_assignment_by_id({id: id, name: name, due_date: date_formatted})
+        } else if (course_id) {
+            add_assignment(name, date_formatted, course_id)
+        }
     }
 
     return (
