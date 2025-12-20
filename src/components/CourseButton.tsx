@@ -12,7 +12,7 @@ export async function CourseButton(props: CourseButtonProps) {
     const Icon = LucideIcons[props.icon] as React.FC<React.SVGProps<SVGSVGElement>>;
 
     return (
-       <Link href={{pathname: `/course/${props.course_name}`, query: {course_id: props.course_id}}}>
+       <Link className={'pl-3'} href={{pathname: `/course/${props.course_name}`, query: {course_id: props.course_id}}}>
             <div className={'flex flex-cols gap-2'}>
                 <p className={'text-2xl'}>{props.course_name}</p>
                 <Icon className={'fill-gray-600 stroke-green-600'} />

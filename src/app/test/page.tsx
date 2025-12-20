@@ -9,8 +9,9 @@ import { LearnItem } from '@/types/learn_item'
 import { LearnItemStack } from '@/components/stacks/LearnItemStack'
 import { Course } from '@/types/course';
 import { CourseButton } from "@/components/CourseButton";
-import { CourseForm } from '@/components/forms/course_form';
+import { CourseForm } from '@/components/forms/CourseForm';
 import { IconType } from "@/types/lucide_icon";
+import { AssignmentForm } from "@/components/forms/AssignmentForm";
 
 
 export default async function page(){
@@ -24,7 +25,7 @@ export default async function page(){
 
     return(
         <div className={"flex items-center gap-8 justify-center h-screen bg-neutral-800"}>
-            <CourseForm id={'29277561-2eab-409a-af0f-f085088b548e'} course_name={'Physics II'} icon={'Circle'}/>
+           <AssignmentForm />
         </div>
     )
 }
