@@ -26,7 +26,7 @@ type FormFields = z.infer<typeof schema>;
 
 export function AssignmentForm({id, name, due_date, course_id}: AssignmentFormProps) {
 
-    const [startDate, setStartDate] = useState(due_date ? new Date(due_date) : new Date());
+    const [dueDate, setDueDate] = useState(due_date ? new Date(due_date) : new Date());
 
     const { register, handleSubmit, formState: { errors }} = useForm<FormFields>(
         {
@@ -39,7 +39,7 @@ export function AssignmentForm({id, name, due_date, course_id}: AssignmentFormPr
 
     const onSubmit: SubmitHandler<FormFields> = (data) => {
         const name = data.name;
-        const date_formatted: string = format(startDate, 'yyyy-MM-dd');
+        const date_formatted: string = format(dueDate, 'yyyy-MM-dd');
 
         if (id) {
             edit_assignment_by_id({id: id, name: name, due_date: date_formatted})
@@ -59,7 +59,7 @@ export function AssignmentForm({id, name, due_date, course_id}: AssignmentFormPr
                 <hr className={'border-green-600'} />
 
                 <h2 className={'text-green-600 ml-6 mr-6'}>Due Date</h2>
-                <DayPicker animate mode={'single'} selected={startDate} className={'mr-6 ml-6 mb-1 bg-neutral-500 rounded-sm pl-2'} onSelect={(date) => setStartDate(date)} />
+                <DayPicker animate mode={'single'} selected={dueDate} className={'mr-6 ml-6 mb-1 bg-neutral-500 rounded-sm pl-2'} onSelect={(date) => setDueDate(date)} />
 
                 <div className="flex flex-col h-10 flex-grow">
                     <hr className="border-green-600" />

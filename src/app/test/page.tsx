@@ -12,13 +12,14 @@ import { CourseButton } from "@/components/CourseButton";
 import { CourseForm } from '@/components/forms/CourseForm';
 import { IconType } from "@/types/lucide_icon";
 import { AssignmentForm } from "@/components/forms/AssignmentForm";
+import { LearnItemForm } from "@/components/forms/LearnItemForm";
 
 
 export default async function page(){
 
     return(
         <div className={"flex items-center gap-8 justify-center h-screen bg-neutral-800"}>
-           <AssignmentForm course_id={'03418f21-fdc6-4c9e-8879-2c64eb85f7d4'} />
+            <LearnItemForm course_id={'29277561-2eab-409a-af0f-f085088b548e'}/>
         </div>
     )
 }
