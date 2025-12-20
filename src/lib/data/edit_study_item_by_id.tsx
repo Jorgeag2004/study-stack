@@ -1,8 +1,9 @@
-import { StudyItem } from '@/types/study_item'
+'use server'
 import 'dotenv/config';
 import { drizzle } from 'drizzle-orm/node-postgres';
 import { eq } from 'drizzle-orm';
 import { study_items_table } from "@/db/schema";
+import { revalidatePath } from "next/cache";
 
 interface edit_study_item_props {
     id: string;
@@ -26,4 +27,6 @@ export async function edit_study_item_by_id({id, name, last_review, star_rating}
         await db.update(study_items_table)
             .set({star_rating: star_rating}).where(eq(study_items_table.id, id))
     }
+
+    revalidatePath('/')
 }

@@ -1,8 +1,9 @@
-import { LearnItem } from "@/types/learn_item";
+'use server'
 import 'dotenv/config';
 import { drizzle } from 'drizzle-orm/node-postgres';
 import { eq } from 'drizzle-orm';
 import {learn_items_table} from "@/db/schema";
+import { revalidatePath } from "next/cache";
 
 interface edit_learn_item_props {
     id: string;
@@ -21,4 +22,6 @@ export async function edit_learn_item_by_id({id, name, date_covered}: edit_learn
         await db.update(learn_items_table)
             .set({date_covered: date_covered}).where(eq(learn_items_table.id, id))
     }
+
+    revalidatePath('/')
 }
