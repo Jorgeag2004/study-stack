@@ -59,7 +59,7 @@ export function AssignmentForm({id, name, due_date, course_id}: AssignmentFormPr
                 <hr className={'border-green-600'} />
 
                 <h2 className={'text-green-600 ml-6 mr-6'}>Due Date</h2>
-                <DayPicker animate mode={'single'} selected={dueDate} className={'mr-6 ml-6 mb-1 bg-neutral-500 rounded-sm pl-2'} onSelect={(date) => setDueDate(date)} />
+                <DayPicker animate mode={'single'} selected={dueDate} className={'mr-6 ml-6 mb-1 bg-neutral-500 rounded-sm pl-2'} onSelect={(date) => setDueDate(date!)} />
 
                 <div className="flex flex-col h-10 flex-grow">
                     <hr className="border-green-600" />

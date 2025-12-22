@@ -59,7 +59,7 @@ export const LearnItemForm = ({id, name, date_covered, course_id}: LearnItemForm
 
 
                <h2 className={'text-green-600 ml-6 mr-6'}>Date Covered</h2>
-               <DayPicker animate mode={'single'} selected={dateCovered} className={'mr-6 ml-6 mb-1 bg-neutral-500 rounded-sm pl-2'} onSelect={(date) => setDateCovered(date)} />
+               <DayPicker animate mode={'single'} selected={dateCovered} className={'mr-6 ml-6 mb-1 bg-neutral-500 rounded-sm pl-2'} onSelect={(date) => setDateCovered(date!)} />
 
                <div className="flex flex-col h-10 flex-grow">
                    <hr className="border-green-600" />
