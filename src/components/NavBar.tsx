@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import {Course} from '@/types/course'
 import {fetch_all_courses} from '@/lib/data/fetch_all_courses'
-import { CourseButton } from "@/components/CourseButton";
+import { CourseButton } from "@/components/buttons/CourseButton";
 
 export async function NavBar() {
 

@@ -16,6 +16,7 @@ interface LearnItemFormProps {
     name?: string;
     date_covered?: string;
     course_id?: string;
+    toggle_form: () => void;
 }
 
 const schema = z.object({
@@ -24,7 +25,7 @@ const schema = z.object({
 
 type FormFields = z.infer<typeof schema>;
 
-export const LearnItemForm = ({id, name, date_covered, course_id}: LearnItemFormProps) => {
+export const LearnItemForm = ({id, name, date_covered, course_id, toggle_form}: LearnItemFormProps) => {
 
     const [dateCovered, setDateCovered] = useState(date_covered ? new Date(date_covered) : new Date());
 
@@ -46,31 +47,43 @@ export const LearnItemForm = ({id, name, date_covered, course_id}: LearnItemForm
        } else if (course_id) {
            add_learn_item(name, date_formatted, course_id)
        }
+       toggle_form();
     }
 
     return (
-        <div className={'bg-neutral-700 rounded-lg'}>
-           <form className={'flex flex-col gap-4 '} onSubmit={handleSubmit(onSubmit)}>
-               <h2 className={'text-green-600 mt-6 ml-6 mr-6'}>Learning Item Title</h2>
-               <input {...register('name')} className={'mr-6 ml-6 mb-1 bg-neutral-500 rounded-sm pl-2'} type={'text'} placeholder={'Enter Title'}/>
-               {errors.name && <div className={'text-red-500 block mx-auto'}>{errors.name.message}</div>}
+        <div className={'fixed inset-0 bg-white/5 backdrop-blur-md flex items-center justify-center z-50'}>
+            <div className={'bg-neutral-700 rounded-lg'}>
+                <form className={'flex flex-col gap-4 '} onSubmit={handleSubmit(onSubmit)}>
+                    <h2 className={'text-green-600 mt-6 ml-6 mr-6'}>Learning Item Title</h2>
+                    <input {...register('name')} className={'mr-6 ml-6 mb-1 bg-neutral-500 rounded-sm pl-2'} type={'text'} placeholder={'Enter Title'}/>
+                    {errors.name && <div className={'text-red-500 block mx-auto'}>{errors.name.message}</div>}
 
-               <hr className={'border-green-600'} />
+                    <hr className={'border-green-600'} />
 
 
-               <h2 className={'text-green-600 ml-6 mr-6'}>Date Covered</h2>
-               <DayPicker animate mode={'single'} selected={dateCovered} className={'mr-6 ml-6 mb-1 bg-neutral-500 rounded-sm pl-2'} onSelect={(date) => setDateCovered(date!)} />
+                    <h2 className={'text-green-600 ml-6 mr-6'}>Date Covered</h2>
+                    <DayPicker animate mode={'single'} selected={dateCovered} className={'mr-6 ml-6 mb-1 bg-neutral-500 rounded-sm pl-2'} onSelect={(date) => setDateCovered(date!)} />
 
-               <div className="flex flex-col h-10 flex-grow">
-                   <hr className="border-green-600" />
-                   <button
-                       className="w-full flex-grow rounded-b-lg hover:bg-neutral-500"
-                       type="submit"
-                   >
-                       Submit
-                   </button>
-               </div>
-           </form>
+                    <div className="flex flex-col h-10 flex-grow">
+                        <hr className="border-green-600" />
+                        <div className="flex h-10 flex-grow">
+                            <button
+                                type={'button'}
+                                className="w-full flex-grow rounded-b-lg hover:bg-neutral-500"
+                                onClick={() => {toggle_form()}}
+                            >
+                                Cancel
+                            </button>
+                            <button
+                                className="w-full flex-grow rounded-b-lg hover:bg-neutral-500"
+                                type="submit"
+                            >
+                                Submit
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     )
 }

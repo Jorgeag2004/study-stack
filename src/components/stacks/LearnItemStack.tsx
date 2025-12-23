@@ -8,7 +8,7 @@ interface LearnItemStackProps {
 
  export const LearnItemStack = (props: LearnItemStackProps) => {
 
-    const stack_styling: string = "flex flex-col basis-s w-fit rounded-2xl bg-zinc-600 p-2 gap-6";
+    const stack_styling: string = "flex min-w-70 min-h-10 flex-col basis-s w-fit rounded-2xl bg-zinc-600 p-2 gap-6";
     return (
         <div className={stack_styling}>
             {props.learn_items.map((l: LearnItem, index: number) => (

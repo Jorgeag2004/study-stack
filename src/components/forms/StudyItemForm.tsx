@@ -17,6 +17,7 @@ interface StudyItemFormProps {
     star_rating?: number;
     last_review?: string;
     course_id?: string;
+    toggle_form: () => void;
 }
 
 const schema = z.object({
@@ -26,7 +27,7 @@ const schema = z.object({
 
 type FormFields = z.infer<typeof schema>;
 
-export const StudyItemForm = ({id, name, star_rating, last_review, course_id}: StudyItemFormProps) => {
+export const StudyItemForm = ({id, name, star_rating, last_review, course_id, toggle_form}: StudyItemFormProps) => {
 
     const [lastReview, setLastReview] = useState(last_review ? new Date(last_review) : new Date());
 
@@ -49,42 +50,54 @@ export const StudyItemForm = ({id, name, star_rating, last_review, course_id}: S
        } else if (course_id) {
            add_study_item(data.name, data.star_rating, format(lastReview, 'yyyy-MM-dd'), course_id)
        }
+       toggle_form();
     }
 
     return (
-        <div className={'bg-neutral-700 rounded-lg'}>
-            <form className={'flex flex-col gap-4 '} onSubmit={handleSubmit(onSubmit)}>
-                <h2 className={'text-green-600 mt-6 ml-6 mr-6'}>Study Item Title</h2>
-                <input {...register('name')} className={'mr-6 ml-6 mb-1 bg-neutral-500 rounded-sm pl-2'} type={'text'} placeholder={'Enter Title'}/>
-                {errors.name && <div className={'text-red-500 block mx-auto'}>{errors.name.message}</div>}
+        <div className={'fixed inset-0 bg-white/5 backdrop-blur-md flex items-center justify-center z-50'}>
+            <div className={'bg-neutral-700 rounded-lg'}>
+                <form className={'flex flex-col gap-4 '} onSubmit={handleSubmit(onSubmit)}>
+                    <h2 className={'text-green-600 mt-6 ml-6 mr-6'}>Study Item Title</h2>
+                    <input {...register('name')} className={'mr-6 ml-6 mb-1 bg-neutral-500 rounded-sm pl-2'} type={'text'} placeholder={'Enter Title'}/>
+                    {errors.name && <div className={'text-red-500 block mx-auto'}>{errors.name.message}</div>}
 
 
-                <hr className={'border-green-600'} />
+                    <hr className={'border-green-600'} />
 
-                <h2 className={'text-green-600 ml-6 mr-6'}>Last Review</h2>
-                <DayPicker animate mode={'single'} selected={lastReview} className={'mr-6 ml-6 mb-1 bg-neutral-500 rounded-sm pl-2'} onSelect={(date) => setLastReview(date!)} />
+                    <h2 className={'text-green-600 ml-6 mr-6'}>Last Review</h2>
+                    <DayPicker animate mode={'single'} selected={lastReview} className={'mr-6 ml-6 mb-1 bg-neutral-500 rounded-sm pl-2'} onSelect={(date) => setLastReview(date!)} />
 
-                <hr className={'border-green-600'} />
+                    <hr className={'border-green-600'} />
 
-                <h2 className={'text-green-600 ml-6 mr-6'}>Star Rating</h2>
-                <select className={'mr-6 ml-6 mb-1 bg-neutral-500 rounded-sm pl-2'} {...register('star_rating', { valueAsNumber: true })}>
-                    <option value={1}>1</option>
-                    <option value={2}>2</option>
-                    <option value={3}>3</option>
-                </select>
+                    <h2 className={'text-green-600 ml-6 mr-6'}>Star Rating</h2>
+                    <select className={'mr-6 ml-6 mb-1 bg-neutral-500 rounded-sm pl-2'} {...register('star_rating', { valueAsNumber: true })}>
+                        <option value={1}>1</option>
+                        <option value={2}>2</option>
+                        <option value={3}>3</option>
+                    </select>
 
-                <Stars count={Number(watched_rating)} />
+                    <Stars count={Number(watched_rating)} />
 
-                <div className="flex flex-col h-10 flex-grow">
-                    <hr className="border-green-600" />
-                    <button
-                        className="w-full flex-grow rounded-b-lg hover:bg-neutral-500"
-                        type="submit"
-                    >
-                        Submit
-                    </button>
-                </div>
-            </form>
+                    <div className="flex flex-col h-10 flex-grow">
+                        <hr className="border-green-600" />
+                        <div className="flex h-10 flex-grow">
+                            <button
+                                type={'button'}
+                                className="w-full flex-grow rounded-b-lg hover:bg-neutral-500"
+                                onClick={() => {toggle_form()}}
+                            >
+                                Cancel
+                            </button>
+                            <button
+                                className="w-full flex-grow rounded-b-lg hover:bg-neutral-500"
+                                type="submit"
+                            >
+                                Submit
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     )
 

@@ -8,7 +8,7 @@ import { fetch_all_learn_items } from "@/lib/data/fetch_all_learn_items";
 import { LearnItem } from '@/types/learn_item'
 import { LearnItemStack } from '@/components/stacks/LearnItemStack'
 import { Course } from '@/types/course';
-import { CourseButton } from "@/components/CourseButton";
+import { CourseButton } from "@/components/buttons/CourseButton";
 import { CourseForm } from '@/components/forms/CourseForm';
 import { IconType } from "@/types/lucide_icon";
 import { AssignmentForm } from "@/components/forms/AssignmentForm";
