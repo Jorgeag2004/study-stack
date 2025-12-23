@@ -8,7 +8,7 @@ interface CourseButtonProps {
     icon: IconType;
 }
 
-export async function CourseButton(props: CourseButtonProps) {
+export function CourseButton(props: CourseButtonProps) {
     const Icon = LucideIcons[props.icon] as React.FC<React.SVGProps<SVGSVGElement>>;
 
     return (
