@@ -1,4 +1,7 @@
+'use client'
 import { Circle } from 'lucide-react'
+import {ContextMenu} from "@/components/buttons/ContextMenu";
+import React from "react";
 
 interface AssignmentCardProps {
     name: string,
@@ -13,17 +16,28 @@ const colorMap: Record<string, string> = {
     "red-600": "fill-red-600 stroke-red-600",
 };
 
-
 export const AssignmentCard = (props: AssignmentCardProps) => {
-
-    const circleStyle: string = `w-4 h-4 absolute bottom-[17px] right-2 ${colorMap[props.color] ?? ""}`;
+    const circleStyle: string = `w-4 h-4 flex-shrink-0 ${colorMap[props.color]}`;
 
     return (
-        <div className="relative w-70 rounded-2xl h-31 bg-neutral-800">
-            <p className="text-2xl text-green-600 pt-3 pl-4">{props.name}</p>
-            <p className="text-xl text-orange-200 pl-4">{props.course}</p>
-            <p className="absolute bottom-3 right-8">{props.dueDate}</p>
-            <Circle className={circleStyle} />
+        <div className="w-70 rounded-2xl min-h-31 flex items-center bg-neutral-800">
+           <div className={'w-full p-3 flex flex-col'}>
+               <div className="min-h-0">
+                   <p className="text-xl text-green-600 font-medium" title={props.name}>
+                       {props.name}
+                   </p>
+                   <p className="text-lg text-orange-200" title={props.course}>
+                       {props.course}
+                   </p>
+               </div>
+               <div className="flex items-center justify-between gap-2">
+                   <p className="text-sm text-neutral-300 truncate">
+                       {props.dueDate}
+                   </p>
+                   <Circle className={circleStyle} />
+               </div>
+           </div>
+            <ContextMenu edit_function={() => console.log('edit')} delete_function={() => console.log('delete')} />
         </div>
     )
 }

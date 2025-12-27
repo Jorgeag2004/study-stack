@@ -49,7 +49,7 @@ export const ContextMenu = ({vertical = true, edit_function, delete_function}: C
                 : <Ellipsis onClick={handleClick} className={'hover:stroke-neutral-500'}/>}
             {openMenu &&
                 <div
-                    className={'w-30 bg-neutral-900 fixed'}
+                    className={'w-30 bg-neutral-900 fixed z-50'}
                     style={{
                         top: `${clientY}px`,
                         left: `${clientX}px`

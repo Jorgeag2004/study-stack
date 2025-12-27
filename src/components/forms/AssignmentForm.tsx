@@ -20,7 +20,7 @@ interface AssignmentFormProps {
 }
 
 const schema = z.object({
-    name: z.string().min(1, 'Assignment Title Required'),
+    name: z.string().min(1, 'Assignment Title Required').max(30, 'Title too long'),
 })
 
 type FormFields = z.infer<typeof schema>;
