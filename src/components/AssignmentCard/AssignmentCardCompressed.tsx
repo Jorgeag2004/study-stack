@@ -19,7 +19,7 @@ export const AssignmentCardCompressed = (props: AssignmentCardProps) => {
 
     return (
        <div className={'flex items-center w-70 rounded-2xl min-h-21 bg-neutral-800'}>
-           <div className="flex items-center justify-between px-4 py-3 gap-3">
+           <div className="flex items-center w-full justify-between px-4 py-3 gap-3">
                <p className="text-xl text-green-600 font-medium  flex-grow" title={props.name}>
                    {props.name}
                </p>
