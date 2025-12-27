@@ -1,8 +1,14 @@
 'use client'
-import { EllipsisVertical } from 'lucide-react';
+import { EllipsisVertical, Ellipsis } from 'lucide-react';
 import { useState, MouseEvent, useEffect, useRef } from "react";
 
-export const ContextMenu = () => {
+interface ContextMenuProps {
+    vertical?: boolean;
+    edit_function: () => void;
+    delete_function: () => void;
+}
+
+export const ContextMenu = ({vertical = true, edit_function, delete_function}: ContextMenuProps) => {
 
     const dropdownRef = useRef(null);
 
@@ -26,19 +32,36 @@ export const ContextMenu = () => {
        setOpenMenu(true);
     }
 
+    const handleEdit = () => {
+        edit_function();
+        setOpenMenu(false);
+    }
+
+    const handleDelete = () => {
+        delete_function();
+        setOpenMenu(false);
+    }
+
     return (
         <div>
-            <EllipsisVertical onClick={handleClick} className={'hover:stroke-neutral-500'}/>
+            {vertical ?
+                <EllipsisVertical onClick={handleClick} className={'hover:stroke-neutral-500'}/>
+                : <Ellipsis onClick={handleClick} className={'hover:stroke-neutral-500'}/>}
             {openMenu &&
                 <div
-                    className={'h-15 w-40 bg-neutral-100 fixed'}
+                    className={'w-30 bg-neutral-900 fixed'}
                     style={{
                         top: `${clientY}px`,
                         left: `${clientX}px`
                     }}
                     ref={dropdownRef}
                 >
-                Menu
+                <div onClick={handleEdit} className={'text-green-600 pl-1 hover:bg-neutral-500'}>
+                    Edit
+                </div>
+                    <div onClick={handleDelete} className={'text-green-600 pl-1 hover:bg-neutral-500'}>
+                        Delete
+                    </div>
             </div>}
         </div>
     )
