@@ -3,6 +3,7 @@ import 'dotenv/config';
 import { drizzle } from 'drizzle-orm/node-postgres';
 import { eq } from 'drizzle-orm';
 import {learn_items_table, study_items_table, assignments_table, courses_table} from "@/db/schema";
+import {redirect} from "next/navigation";
 
 export async function delete_course_by_id(id: string): Promise<void> {
 
@@ -13,4 +14,6 @@ export async function delete_course_by_id(id: string): Promise<void> {
     await db.delete(learn_items_table).where(eq(learn_items_table.course_id, id))
     await db.delete(study_items_table).where(eq(study_items_table.course_id, id))
     await db.delete(assignments_table).where(eq(assignments_table.course_id, id))
+
+    redirect('/')
 }

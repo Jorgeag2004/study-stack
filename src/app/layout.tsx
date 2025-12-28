@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${roboto_mono.className} antialiased flex`}
+        className={`${roboto_mono.className} antialiased flex w-full h-screen bg-neutral-800`}
       >
         <NavBar />
         <main className="flex-1 overflow-auto">
