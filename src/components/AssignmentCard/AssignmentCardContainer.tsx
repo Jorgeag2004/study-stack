@@ -30,11 +30,11 @@ export const AssignmentCardContainer = ({id, name, dueDate, compressed=false, co
 
     if (compressed) {
         return (
-            <AssignmentCardCompressed color={color} dueDate={days_text} name={name} />
+            <AssignmentCardCompressed id={id} color={color} date_text={days_text} dueDate={dueDate} name={name} />
         )
     }
 
     return (
-        <AssignmentCard name={name} color={color} dueDate={days_text} course={courseName} />
+        <AssignmentCard id={id} name={name} color={color} date_text={days_text} dueDate={dueDate} course={courseName} />
     )
 }

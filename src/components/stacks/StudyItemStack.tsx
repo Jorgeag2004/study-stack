@@ -8,7 +8,7 @@ interface StudyItemStackProps {
 
 export const StudyItemStack = (props: StudyItemStackProps) => {
 
-    const stack_styling: string = "flex min-w-70 min-h-10 flex-col basis-s w-fit rounded-2xl bg-zinc-600 p-2 gap-6";
+    const stack_styling: string = "flex flex-col overflow-y-scroll overflow-x-hidden [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-zinc-700 [&::-webkit-scrollbar-thumb]:bg-zinc-400 [&::-webkit-scrollbar-thumb]:rounded-full basis-s max-h-9/10 min-w-70 min-h-10 w-fit rounded-2xl bg-zinc-600 p-2 gap-6";
 
     return (
         <div className={stack_styling}>
