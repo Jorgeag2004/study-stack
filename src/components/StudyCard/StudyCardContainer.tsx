@@ -17,11 +17,11 @@ export const StudyCardContainer = ({id, name, courseName, starRating, lastReview
 
     if (compressed) {
         return (
-            <StudyCardCompressed name={name} daysSinceReview={daysSinceReview} numStars={starRating} />
+            <StudyCardCompressed id={id} name={name} lastReview={lastReview} daysSinceReview={daysSinceReview} numStars={starRating} />
         )
     }
 
     return (
-        <StudyCard name={name} course={courseName} daysSinceReview={daysSinceReview} numStars={starRating} />
+        <StudyCard id={id} name={name} lastReview={lastReview} course={courseName} daysSinceReview={daysSinceReview} numStars={starRating} />
     )
 }

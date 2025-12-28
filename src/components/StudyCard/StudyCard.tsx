@@ -2,6 +2,9 @@
 import { Star } from 'lucide-react'
 import React from "react";
 import { ContextMenu } from "@/components/buttons/ContextMenu";
+import { useState } from "react";
+import { delete_study_item_by_id } from "@/lib/data/delete_study_item_by_id";
+import { StudyItemForm } from "@/components/forms/StudyItemForm";
 
 const starIconMap: Record<number, React.ReactElement> = {
     1:
@@ -28,10 +31,15 @@ interface StudyCardProps {
     name: string;
     course: string;
     daysSinceReview: number;
+    lastReview: string;
     numStars: number;
+    id: string
 }
 
 export const StudyCard = (props: StudyCardProps) => {
+
+    const [openForm, setOpenForm ] = useState<boolean>(false);
+
     return (
         <div className="flex items-center relative w-70 rounded-2xl min-h-31 bg-neutral-800">
            <div className={'w-full'}>
@@ -42,7 +50,8 @@ export const StudyCard = (props: StudyCardProps) => {
                    {starIconMap[props.numStars]}
                </div>
            </div>
-            <ContextMenu edit_function={() => console.log('edit')} delete_function={() => console.log('delete')} />
+            <ContextMenu edit_function={() => setOpenForm(true)} delete_function={() => delete_study_item_by_id(props.id)} />
+            {openForm && <StudyItemForm toggle_form={() => setOpenForm(false)} name={props.name} id={props.id} last_review={props.lastReview} star_rating={props.numStars} />}
         </div>
     )
 }
