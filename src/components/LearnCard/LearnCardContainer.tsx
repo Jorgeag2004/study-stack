@@ -17,12 +17,12 @@ export const LearnCardContainer = ({id, name, courseName, dateCovered, courseID,
 
     if (compressed) {
         return (
-            <LearnCardCompressed id={id} dateCovered={date_text} name={name} />
+            <LearnCardCompressed id={id} date_text={date_text} dateCovered={dateCovered} name={name} />
         )
     }
 
     return (
-        <LearnCard id={id} name={name} course={courseName} dateCovered={date_text} />
+        <LearnCard id={id} date_text={date_text} name={name} course={courseName} dateCovered={dateCovered} />
     )
 
 }

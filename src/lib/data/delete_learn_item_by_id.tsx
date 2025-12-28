@@ -1,11 +1,15 @@
+'use server'
 import 'dotenv/config';
 import { drizzle } from 'drizzle-orm/node-postgres';
 import { eq } from 'drizzle-orm';
 import {learn_items_table} from "@/db/schema";
+import {revalidatePath} from "next/cache";
 
 export async function delete_learn_item_by_id(id: string): Promise<void> {
 
     const db = drizzle(process.env.DATABASE_URL!)
 
     await db.delete(learn_items_table).where(eq(learn_items_table.id, id))
+
+    revalidatePath('/')
 }
