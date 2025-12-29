@@ -11,7 +11,7 @@ export function get_days_diff(date: string):  number {
         now.getUTCDate()
     ); // UTC midnight today
 
-    const diffMs = todayUtc - targetUtc;
+    const diffMs = targetUtc - todayUtc;
     const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
     return diffDays;
 }
@@ -29,5 +29,5 @@ export function get_days_text(date: string): string {
 
 export const parseLocalDate = (dateString: string) => {
     const [year, month, day] = dateString.split('-');
-    return new Date(year, month - 1, day); // month is 0-indexed
+    return new Date(Number(year), Number(month) - 1, Number(day)); // month is 0-indexed
 };
