@@ -7,6 +7,7 @@ import { format } from 'date-fns';
 import { DayPicker } from 'react-day-picker';
 import { add_assignment } from "@/lib/data/add_assignment";
 import { edit_assignment_by_id } from "@/lib/data/edit_assignment_by_id";
+import {parseLocalDate} from "@/utils/DateUtils";
 
 import 'react-day-picker/style.css'
 
@@ -27,7 +28,7 @@ type FormFields = z.infer<typeof schema>;
 
 export function AssignmentForm({id, name, due_date, course_id, toggle_form}: AssignmentFormProps) {
 
-    const [dueDate, setDueDate] = useState(due_date ? new Date(due_date) : new Date());
+    const [dueDate, setDueDate] = useState(due_date ? parseLocalDate(due_date) : new Date());
 
     const { register, handleSubmit, formState: { errors }} = useForm<FormFields>(
         {

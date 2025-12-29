@@ -8,6 +8,7 @@ import {DayPicker} from "react-day-picker";
 import { Stars } from "@/ui/Stars";
 import { edit_study_item_by_id } from "@/lib/data/edit_study_item_by_id";
 import { add_study_item } from "@/lib/data/add_study_item";
+import {parseLocalDate} from "@/utils/DateUtils";
 
 import 'react-day-picker/style.css'
 
@@ -29,7 +30,7 @@ type FormFields = z.infer<typeof schema>;
 
 export const StudyItemForm = ({id, name, star_rating, last_review, course_id, toggle_form}: StudyItemFormProps) => {
 
-    const [lastReview, setLastReview] = useState(last_review ? new Date(last_review) : new Date());
+    const [lastReview, setLastReview] = useState(last_review ? parseLocalDate(last_review) : new Date());
 
 
     const { register, handleSubmit, formState: { errors }, control} = useForm<FormFields>(

@@ -7,6 +7,7 @@ import {format} from "date-fns";
 import { add_learn_item } from "@/lib/data/add_learn_item";
 import { edit_learn_item_by_id } from "@/lib/data/edit_learn_item_by_id";
 import {DayPicker} from "react-day-picker";
+import {parseLocalDate} from "@/utils/DateUtils";
 
 import 'react-day-picker/style.css'
 import {add_course} from "@/lib/data/add_course";
@@ -27,7 +28,7 @@ type FormFields = z.infer<typeof schema>;
 
 export const LearnItemForm = ({id, name, date_covered, course_id, toggle_form}: LearnItemFormProps) => {
 
-    const [dateCovered, setDateCovered] = useState(date_covered ? new Date(date_covered) : new Date());
+    const [dateCovered, setDateCovered] = useState(date_covered ? parseLocalDate(date_covered) : new Date());
 
     const { register, handleSubmit, formState: { errors }} = useForm<FormFields>(
         {
