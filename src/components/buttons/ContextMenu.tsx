@@ -10,12 +10,12 @@ interface ContextMenuProps {
 
 export const ContextMenu = ({vertical = true, edit_function, delete_function}: ContextMenuProps) => {
 
-    const dropdownRef = useRef(null);
+    const dropdownRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const handleClickOutside = (e: globalThis.MouseEvent) => {
-            if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
-               setOpenMenu(false);
+            if (dropdownRef.current && e.target instanceof Node && !dropdownRef.current.contains(e.target)) {
+                setOpenMenu(false);
             }
         };
         document.addEventListener('mousedown', handleClickOutside);
