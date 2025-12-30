@@ -9,7 +9,7 @@ interface CourseButtonProps {
 }
 
 export function CourseButton(props: CourseButtonProps) {
-    const Icon = (LucideIcons as unknown as Record<string, React.ComponentType>)[props.icon];
+    const Icon = (LucideIcons as unknown as Record<string, React.FC<React.SVGProps<SVGSVGElement>>>)[props.icon];
 
     return (
        <Link className={'pl-3'} href={{pathname: `/course/${props.course_name}`, query: {course_id: props.course_id}}}>
