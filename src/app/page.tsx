@@ -8,6 +8,8 @@ import { fetch_all_learn_items } from "@/lib/data/fetch_all_learn_items";
 import { LearnItem } from '@/types/learn_item'
 import { LearnItemStack } from '@/components/stacks/LearnItemStack'
 
+export const dynamic = 'force-dynamic';
+
 export default async function Home() {
   const assignments: Assignment[] = await fetch_all_assignments()
 
