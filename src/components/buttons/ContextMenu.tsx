@@ -13,7 +13,7 @@ export const ContextMenu = ({vertical = true, edit_function, delete_function}: C
     const dropdownRef = useRef(null);
 
     useEffect(() => {
-        const handleClickOutside = (e) => {
+        const handleClickOutside = (e: globalThis.MouseEvent) => {
             if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
                setOpenMenu(false);
             }
