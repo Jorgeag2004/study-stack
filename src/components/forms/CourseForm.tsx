@@ -13,7 +13,11 @@ interface CourseFormProps {
     toggle_form: () => void;
 }
 
-const IconEnum = z.enum(Object.keys(LucideIcons) as [string, ...string[]]);
+const iconNames = Object.keys(LucideIcons).filter(
+    (key) => key !== 'createLucideIcon' && key !== 'default' && typeof LucideIcons[key as keyof typeof LucideIcons] === 'function'
+);
+
+const IconEnum = z.enum(iconNames as [string, ...string[]]);
 
 type IconType = z.infer<typeof IconEnum>;
 
@@ -39,7 +43,7 @@ export function CourseForm({ course_name, icon, id, toggle_form}: CourseFormProp
     const watched_icon = useWatch<FormFields>({ control, name: 'icon' });
 
     const Icon = watched_icon
-        ? LucideIcons[watched_icon as keyof typeof LucideIcons]
+        ? (LucideIcons as unknown as Record<string, React.FC<React.SVGProps<SVGSVGElement>>>)[watched_icon]
         : null;
 
     const onSubmit:  SubmitHandler<FormFields> = async (data) => {
@@ -65,7 +69,7 @@ export function CourseForm({ course_name, icon, id, toggle_form}: CourseFormProp
 
                     <h2 className={'text-green-600 ml-6 mr-6'}>Icon</h2>
                     <select {...register('icon')} className={'ml-6 mr-6 bg-neutral-500 rounded-sm'}>
-                        {Object.keys(LucideIcons).map((iconName) => (
+                        {iconNames.map((iconName) => (
                             <option key={iconName} value={iconName}>
                                 {iconName}
                             </option>
