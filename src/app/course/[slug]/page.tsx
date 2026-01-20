@@ -11,10 +11,12 @@ import {CourseContent} from "@/components/CourseContent";
 export default async function Page({
                                        searchParams,
                                    }: {
-    searchParams: {[key: string]: string}
+    searchParams: Promise<{[key: string]: string}>
 }) {
 
-    const course_id = searchParams["course_id"]
+    const params = await searchParams;
+
+    const course_id = params["course_id"];
 
 
     const assignments: Assignment[] = await fetch_assignments_by_id(course_id);
