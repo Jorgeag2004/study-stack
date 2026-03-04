@@ -13,8 +13,7 @@ import {LearnItemStack} from "@/components/stacks/LearnItemStack";
 import {ContextMenu} from "@/components/buttons/ContextMenu";
 import {CourseForm} from "@/components/forms/CourseForm";
 import {delete_course_by_id} from "@/lib/data/delete_course_by_id";
-import * as LucideIcons from "lucide-react";
-import { LucideIcon} from "lucide-react";
+import { IconMap } from "@/lib/Icons"
 
 interface CourseContentProps {
     assignments: Assignment[],
@@ -32,7 +31,7 @@ export const CourseContent = ({assignments, study_items, learn_items, course_id,
     const [openAddLearnItem, setOpenAddLearnItem] = useState<boolean>(false);
     const [openEditCourse, setOpenEditCourse] = useState<boolean>(false);
 
-    const Icon = (LucideIcons as unknown as Record<string, React.ComponentType>)[icon];
+    const Icon = IconMap[icon]
 
     return (
         <div className={'bg-neutral-800 w-full h-full'}>

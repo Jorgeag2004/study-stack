@@ -1,10 +1,11 @@
 'use client'
-import * as LucideIcons from 'lucide-react';
+import * as LucidIcons from 'lucide-react';
 import { useForm, SubmitHandler, useWatch } from 'react-hook-form';
 import {z} from 'zod';
 import {zodResolver} from "@hookform/resolvers/zod";
 import { add_course } from "@/lib/data/add_course";
 import { edit_course_by_id } from "@/lib/data/edit_course_by_id";
+import { IconMap } from "@/lib/Icons"
 
 interface CourseFormProps {
     course_name?: string;
@@ -13,9 +14,7 @@ interface CourseFormProps {
     toggle_form: () => void;
 }
 
-const iconNames = Object.keys(LucideIcons).filter(
-    (key) => key !== 'createLucideIcon' && key !== 'default' && typeof LucideIcons[key as keyof typeof LucideIcons] === 'function'
-);
+const iconNames = Object.keys(IconMap)
 
 const IconEnum = z.enum(iconNames as [string, ...string[]]);
 
@@ -34,7 +33,7 @@ export function CourseForm({ course_name, icon, id, toggle_form}: CourseFormProp
         {
             defaultValues: {
                 course_name: course_name,
-                icon: icon ? icon : 'Circle'
+                icon: icon ? icon : 'Sigma'
             },
             resolver: zodResolver(schema),
         }
@@ -42,9 +41,7 @@ export function CourseForm({ course_name, icon, id, toggle_form}: CourseFormProp
 
     const watched_icon = useWatch<FormFields>({ control, name: 'icon' });
 
-    const Icon = watched_icon
-        ? (LucideIcons as unknown as Record<string, React.FC<React.SVGProps<SVGSVGElement>>>)[watched_icon]
-        : null;
+    const Icon = IconMap[watched_icon];
 
     const onSubmit:  SubmitHandler<FormFields> = async (data) => {
         if (id && (!icon || !course_name)) {

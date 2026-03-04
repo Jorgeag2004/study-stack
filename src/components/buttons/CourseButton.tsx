@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { IconType } from "@/types/lucide_icon";
-import * as LucideIcons from "lucide-react";
+import { IconMap } from "@/lib/Icons";
+import { HelpCircle } from 'lucide-react';
 
 interface CourseButtonProps {
     course_id: string;
@@ -9,7 +10,7 @@ interface CourseButtonProps {
 }
 
 export function CourseButton(props: CourseButtonProps) {
-    const Icon = (LucideIcons as unknown as Record<string, React.FC<React.SVGProps<SVGSVGElement>>>)[props.icon];
+    const Icon = IconMap[props.icon] ?? HelpCircle;
 
     return (
        <Link className={'pl-3'} href={{pathname: `/course/${props.course_name}`, query: {course_id: props.course_id}}}>
