@@ -7,7 +7,7 @@ import {courses_data, assignments_data, learn_items_data, study_items_data} from
 //     connectionString: process.env.DATABASE_URL!,
 // })
 
-const db = drizzle(process.env.DATABASE_URL!)
+const db = drizzle(process.env.DOCKER_POSTGRES_URL!)
 
 async function main() {
     await db.insert(courses_table).values(courses_data);
