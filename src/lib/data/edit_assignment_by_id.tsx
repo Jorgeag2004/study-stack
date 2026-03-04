@@ -5,6 +5,8 @@ import { eq } from 'drizzle-orm';
 import {assignments_table} from "@/db/schema";
 import { revalidatePath } from "next/cache";
 
+import { db } from '@/db/db';
+
 interface edit_assignment_props {
     id: string;
     name?: string;
@@ -12,8 +14,6 @@ interface edit_assignment_props {
 }
 
 export async function edit_assignment_by_id({id, name, due_date}: edit_assignment_props): Promise<void> {
-
-    const db = drizzle(process.env.DATABASE_URL!);
 
     if (name) {
         await db.update(assignments_table)

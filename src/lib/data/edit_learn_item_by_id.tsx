@@ -5,6 +5,8 @@ import { eq } from 'drizzle-orm';
 import {learn_items_table} from "@/db/schema";
 import { revalidatePath } from "next/cache";
 
+import { db } from '@/db/db';
+
 interface edit_learn_item_props {
     id: string;
     name?: string;
@@ -12,8 +14,6 @@ interface edit_learn_item_props {
 }
 
 export async function edit_learn_item_by_id({id, name, date_covered}: edit_learn_item_props): Promise<void> {
-    const db = drizzle(process.env.DATABASE_URL!)
-
     if (name) {
         await db.update(learn_items_table)
             .set({name: name}).where(eq(learn_items_table.id, id))

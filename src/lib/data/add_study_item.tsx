@@ -5,7 +5,7 @@ import { study_items_table } from "@/db/schema";
 import { revalidatePath } from "next/cache";
 import { fetch_course_info_by_id } from "@/lib/data/fetch_course_info_by_id";
 
-const db = drizzle(process.env.DATABASE_URL!);
+import { db } from '@/db/db';
 
 export async function add_study_item(name: string, star_rating: number, last_review: string, course_id: string): Promise<void> {
 

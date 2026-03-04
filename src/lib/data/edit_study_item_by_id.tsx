@@ -5,6 +5,8 @@ import { eq } from 'drizzle-orm';
 import { study_items_table } from "@/db/schema";
 import { revalidatePath } from "next/cache";
 
+import { db } from '@/db/db';
+
 interface edit_study_item_props {
     id: string;
     name?: string;
@@ -13,8 +15,6 @@ interface edit_study_item_props {
 }
 
 export async function edit_study_item_by_id({id, name, last_review, star_rating}: edit_study_item_props): Promise<void> {
-    const db = drizzle(process.env.DATABASE_URL!)
-
     if (name) {
         await db.update(study_items_table)
             .set({name: name}).where(eq(study_items_table.id, id))

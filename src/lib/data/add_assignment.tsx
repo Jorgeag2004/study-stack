@@ -4,8 +4,7 @@ import { drizzle } from 'drizzle-orm/node-postgres';
 import { assignments_table } from "@/db/schema";
 import { revalidatePath } from "next/cache";
 import { fetch_course_info_by_id } from "@/lib/data/fetch_course_info_by_id";
-
-const db = drizzle(process.env.DATABASE_URL!);
+import { db } from '@/db/db';
 
 export async function add_assignment(name: string, due_date: string, course_id: string): Promise<void> {
 

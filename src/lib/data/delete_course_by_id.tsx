@@ -5,9 +5,9 @@ import { eq } from 'drizzle-orm';
 import {learn_items_table, study_items_table, assignments_table, courses_table} from "@/db/schema";
 import {redirect} from "next/navigation";
 
-export async function delete_course_by_id(id: string): Promise<void> {
+import { db } from '@/db/db';
 
-    const db = drizzle(process.env.DATABASE_URL!)
+export async function delete_course_by_id(id: string): Promise<void> {
 
     await db.delete(courses_table).where(eq(courses_table.id, id))
 

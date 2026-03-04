@@ -5,9 +5,9 @@ import { eq } from 'drizzle-orm';
 import {assignments_table} from "@/db/schema";
 import {revalidatePath} from "next/cache";
 
-export async function delete_assignment_by_id(id: string): Promise<void> {
+import { db } from '@/db/db';
 
-    const db = drizzle(process.env.DATABASE_URL!)
+export async function delete_assignment_by_id(id: string): Promise<void> {
 
     await db.delete(assignments_table).where(eq(assignments_table.id, id))
     revalidatePath('/')

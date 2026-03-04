@@ -4,7 +4,7 @@ import { drizzle } from 'drizzle-orm/node-postgres';
 import { learn_items_table } from "@/db/schema";
 import {get_days_diff } from '@/utils/DateUtils'
 
-const db = drizzle(process.env.DATABASE_URL!)
+import { db } from '@/db/db';
 
 export async function fetch_all_learn_items(): Promise<LearnItem[]> {
     const learn_items: LearnItem[] = await db.select().from(learn_items_table);

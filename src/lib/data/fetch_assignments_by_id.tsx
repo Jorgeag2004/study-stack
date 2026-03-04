@@ -5,7 +5,7 @@ import { eq } from 'drizzle-orm';
 import { assignments_table } from "@/db/schema";
 import {get_days_diff} from "@/utils/DateUtils";
 
-const db = drizzle(process.env.DATABASE_URL!)
+import { db } from '@/db/db';
 
 export async function fetch_assignments_by_id(course_id: string): Promise<Assignment[]> {
     const assignments: Assignment[] = await db.select().from(assignments_table).where(eq(assignments_table.course_id, course_id));

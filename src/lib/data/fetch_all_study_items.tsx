@@ -4,7 +4,7 @@ import { drizzle } from 'drizzle-orm/node-postgres';
 import { study_items_table } from "@/db/schema";
 import { getStudyItemSortValue } from "@/utils/GetStudyItemSortValue";
 
-const db = drizzle(process.env.DATABASE_URL!)
+import { db } from '@/db/db';
 
 export async function fetch_all_study_items(): Promise<StudyItem[]> {
     const study_items: StudyItem[] = await db.select().from(study_items_table);

@@ -4,7 +4,7 @@ import { drizzle } from 'drizzle-orm/node-postgres';
 import { assignments_table } from "@/db/schema";
 import { get_days_diff } from '@/utils/DateUtils'
 
-const db = drizzle(process.env.DATABASE_URL!)
+import { db } from '@/db/db';
 
 export async function fetch_all_assignments(): Promise<Assignment[]> {
     const assignments: Assignment[] = await db.select().from(assignments_table);

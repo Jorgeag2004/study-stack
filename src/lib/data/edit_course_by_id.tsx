@@ -5,6 +5,9 @@ import { drizzle } from 'drizzle-orm/node-postgres';
 import { eq } from 'drizzle-orm';
 import { courses_table, assignments_table, learn_items_table, study_items_table } from "@/db/schema";
 import {revalidatePath} from "next/cache";
+
+import { db } from '@/db/db';
+
 interface edit_course_props {
     id: string;
     name?: string;
@@ -12,8 +15,6 @@ interface edit_course_props {
 }
 
 export async function edit_course_by_id({id, name, icon}: edit_course_props): Promise<void> {
-    const db = drizzle(process.env.DATABASE_URL!)
-
     if (name) {
         await db.update(courses_table)
             .set({name: name}).where(eq(courses_table.id, id))
