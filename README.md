@@ -2,10 +2,10 @@
 
 A full-stack study management application that helps students organize coursework, track assignments, and prioritize studying through intelligent automation. Built with a modern web stack featuring a smart priority algorithm and Kanban-style task management.
 
-![Home Page](public/images/Screenshot 2026-03-04 at 3.54.26 PM.png)
-![Course Page](public/images/Screenshot 2026-03-04 at 3.53.22 PM.png)
-![Course Form](public/images/Screenshot 2026-03-04 at 3.53.45 PM.png)
-![Study Item Form](public/images/Screenshot 2026-03-04 at 4.03.18 PM.png)
+![Home Page](./public/images/home-page.png)
+![Course Page](./public/images/course-page.png)
+![Course Form](./public/images/course-form.png)
+![Study Item Form](./public/images/study-item-form.png)
 
 
 ## Features
